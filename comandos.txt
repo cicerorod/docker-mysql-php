@@ -1,0 +1,39 @@
+
+----------------------DOCKER
+-- executar comandos (bash e para ter acess a linha de comendo)
+$docker exec -it webserver bash
+
+-- Cria um volume
+$docker run -d --name webserver2 -p 8081:80 -v /c/Users/wesley/docker-project/html:/usr/share/nginx/html nginx
+
+
+-- Para e remove o container 
+docker container rm webserver2 - f
+
+
+-- Criação de um WordPress com banco Mysql
+docker run -d --name dbserver -p 3306:3306 -e "MYSQL_ROOT_PASSWORD=root" -e "MYSQL_DATABASE=wordpress" mysql
+docker run -d --name wordpress -p 8085:80 --link dbserver:mysql  wordpress
+
+
+
+----------------------DOCKERFILE
+--
+docker build -t cicerorod/php7:v2
+
+
+
+
+
+------------------- comandos linux
+
+
+$ apt-get update
+$ apt-get install mysql-client
+$ mysql -uroot -h mysql -p ou $ mysql -uroot -h Name_Container -p ou $ mysql -uroot -h ID_Container -p
+
+
+$ docker run --name mybanco -e MYSQL_ROOT_PASSWORD=root -d -p 3306:3306 mysql:latest
+$ sudo docker run --name meublog -d -p 8080:80 -e WORDPRESS_DB_HOST=172.31.36.246:3306 -e WORDPRESS_DB_PASSWORD=12345678 -e WORDPRESS_DB_NAME=mydb -e WORDPRESS_TABLE_PREFIX=wp wordpress:latest
+
+
